@@ -2,7 +2,7 @@ version: '3.5'
 
 services: 
     house-service:
-        image: sneyd321/house-service:test
+        image: sneyd321/house-service
        
         ports: 
             - 8082:8082

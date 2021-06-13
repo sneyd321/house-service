@@ -15,6 +15,7 @@ class Config:
         #Solves MySQL server has gone away BrokenPipeError 
         self.app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_size' : 100, 'pool_recycle' : 280}
         self.app.config["WTF_CSRF_ENABLED"] = False
+        self.app.config["homeowner-gateway"] = "http://homeowner-gateway.default.svc.cluster.local:8080/homeowner-gateway/v1/"
         return self.app
 
     def developmentConfig(self):    
@@ -24,6 +25,7 @@ class Config:
         #Solves MySQL server has gone away BrokenPipeError 
         self.app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_size' : 100, 'pool_recycle' : 280}
         self.app.config["WTF_CSRF_ENABLED"] = False
+        self.app.config["homeowner-gateway"] = "http://192.168.0.107:8080/homeowner-gateway/v1/"
         return self.app
 
     def testConfig(self):
