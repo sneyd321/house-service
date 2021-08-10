@@ -59,7 +59,7 @@
         </style>
 </head>
 <body>
-    <h2>Select Arrangement</h2>
+    <h2>Select Rental Type</h2>
     <!--<form method="POST" action="http://34.107.132.144/homeowner-gateway/v1/">-->
     <form method="POST" action="{{url}}">  
 
@@ -88,6 +88,19 @@
         <div class="mdc-radio__ripple"></div>
         </div>
         <label for="{{ fields[0].choices[0] }}">{{ fields[0].choices[1][1] }}</label>
+    </div>
+
+    <br>
+    <div class="mdc-form-field">
+        <div class="mdc-radio">
+        <input class="mdc-radio__native-control" type="radio" id="{{ fields[0].choices[2][1] }}" name="arrangement" value="{{  fields[0].choices[2][0] }}"  />
+        <div class="mdc-radio__background">
+            <div class="mdc-radio__outer-circle"></div>
+            <div class="mdc-radio__inner-circle"></div>
+        </div>
+        <div class="mdc-radio__ripple"></div>
+        </div>
+        <label for="{{ fields[0].choices[0] }}">{{ fields[0].choices[2][1] }}</label>
     </div>
 
     <br>

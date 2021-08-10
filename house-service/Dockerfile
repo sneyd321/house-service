@@ -4,7 +4,13 @@ WORKDIR /usr/src/app
 
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip3 install gunicorn
 
 COPY . .
 
-CMD [ "python", "./app.py" ]
+ENV FLASK_APP=app
+
+
+
+CMD ["python", "app.py"]
+#CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8082", "app:app"]

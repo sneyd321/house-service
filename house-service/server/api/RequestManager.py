@@ -48,10 +48,10 @@ class RequestManager:
 
 
     
-    def authenticate(self, **kwargs):
+    def authenticate_homeowner(self, **kwargs):
         headers = kwargs.get("headers", self.request.headers)
         try:
-            response = requests.get(self.service + "Verify", headers=headers)
+            response = requests.get("http://" + self.service + "/homeowner/v1/Verify", headers=headers)
             if response.ok:
                 homeownerData = response.json()
                 return homeownerData["homeownerId"]
@@ -59,6 +59,16 @@ class RequestManager:
         except requests.exceptions.ConnectionError:
             return None
    
+    def authenticate_tenant(self, **kwargs):
+        headers = kwargs.get("headers", self.request.headers)
+        try:
+            response = requests.get("http://" + self.service + "/tenant/v1/Verify", headers=headers)
+            if response.ok:
+                homeownerData = response.json()
+                return homeownerData["tenantId"]
+            return None
+        except requests.exceptions.ConnectionError:
+            return None
 
 
     def get_html(self, resource):

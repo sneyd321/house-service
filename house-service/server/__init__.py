@@ -10,8 +10,8 @@ app = Flask(__name__)
 
 from kazoo.client import KazooClient, KazooState
 
-zk = KazooClient(hosts='host.docker.internal:2181')
-zk.start()
+zk = KazooClient()
+
 
 
 @app.route("/Health")
@@ -25,6 +25,7 @@ def create_app(env):
     config = Config(app)
     if env == "prod":
         app = config.productionConfig()
+        
     elif env == "dev":
         app = config.developmentConfig()
     elif env == "test":
@@ -34,6 +35,8 @@ def create_app(env):
     
     migrate = Migrate(app, db)
     db.init_app(app)
+    zk.set_hosts(app.config["ZOOKEEPER"])
+    zk.start()
     
     #Intialize modules
     from server.api.routes import house
